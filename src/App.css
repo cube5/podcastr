@@ -1,0 +1,55 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.container {
+  position: relative;
+}
+
+.feed-form > input {
+  font-size: medium;
+}
+
+.feed-form > input[type=text] {
+  width: 50%;
+}
+
+.feed-logo {
+  width: 100px;
+}
+
+.feed {
+  padding-top: 20px;
+  width: 60%;
+  margin: 0 auto;
+}
+
+.feed-items {
+  border: 1px solid;
+  padding: 10px 10px 10px 10px;
+}
+
+.feed-item {
+  text-align: left
+}
