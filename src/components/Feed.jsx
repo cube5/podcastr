@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import FeedItem from './FeedItem';
 
@@ -16,7 +16,7 @@ const Feed = ({ rss }) => {
   const feed = rss.feed;
   return (
     <div className="feed">
-      <img src={feed.image} className="feed-logo" />
+      <img src={feed.image} alt="Feed logo" className="feed-logo" />
       <h3>{feed.title}</h3>
       <div>
         <b>Link:</b> <a href={feed.link}>{feed.link}</a>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {getRSSFeed} from '../utils/helpers';
+import {getRSSFeed} from '../requests';
 import Feed from './Feed';
 
 class Home extends Component {

@@ -2,11 +2,15 @@
   "name": "podcastr",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://cube5.github.io/podcastr",
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "format": "prettier --trailing-comma es5 --single-quote --write \"src/**/*.js\"",
+    "prebuild": "npm run format",
+    "build": "react-scripts build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "eject": "react-scripts eject"
   },
   "dependencies": {
@@ -16,8 +20,10 @@
     "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
-    "enzyme": "^3.2.0",
+    "enzyme": "^3.3.0",
+    "gh-pages": "^1.1.0",
     "jest": "^22.0.4",
+    "jest-enzyme": "^4.0.2",
     "prettier": "^1.9.2",
     "react-scripts": "1.0.17"
   }

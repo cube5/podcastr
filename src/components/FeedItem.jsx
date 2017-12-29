@@ -1,12 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-
-const Audio = props => (
-  <audio preload="metadata" controls>
-    <source src={props.src} type={props.type} />
-    Your browser does not support the <code>audio</code> element.
-  </audio>
-);
+import Audio from './Audio';
 
 const FeedItem = ({ item }) => (
   <div className="feed-item">
