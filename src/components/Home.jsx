@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import {getRSSFeed} from '../requests';
+// import Podcasts from './Podcasts';
+import SearchBar from './SearchBar';
 import Feed from './Feed';
 
 class Home extends Component {
@@ -7,10 +9,8 @@ class Home extends Component {
     super(props);
 
     this.input = null;
-    this.defaultUrl = "http://www.los40.com.mx/plantilla/xmlitunes.aspx?id=4444";
-
     this.state = {
-      url: this.defaultUrl,
+      isFetching: false,
       rss: {
         feed: {},
         items: [],
@@ -18,15 +18,19 @@ class Home extends Component {
     };
   }
 
-  handleSubmit = async (e) => {
+  handleSubmit = async (e, value) => {
     e.preventDefault();
-    console.log('handling submit event', this.input.value);
+    console.log('handling submit event', value);
 
-    const result = await getRSSFeed(this.input.value);
-    console.log(result);
+    this.setState({
+      isFetching: true
+    });
+
+    const result = await getRSSFeed(value);
+
     const { feed, items } = result;
     this.setState({
-      url: this.state.url,
+      isFetching: false,
       rss: {
         feed,
         items
@@ -35,19 +39,15 @@ class Home extends Component {
   }
 
   render() {
+
+    const {isFetching} = this.state;
     return (
-      <div className="content">
-        <form onSubmit={this.handleSubmit} className="feed-form">
-          <input
-            type="text"
-            defaultValue={this.defaultUrl}
-            placeholder={this.defaultUrl}
-            ref={(input) => this.input = input}
-          />
-          <input type="submit" value="Submit" />
-        </form>
-        <Feed rss={this.state.rss} />
-      </div>
+      <section className="section" style={{ minHeight: '14.2rem' }}>
+        <div className="container">
+          <SearchBar onSubmit={this.handleSubmit} isFetching={isFetching} />
+          <Feed rss={this.state.rss} />
+        </div>
+      </section>
     );
   }
 }

@@ -2,39 +2,41 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FeedItem from './FeedItem';
 
-const EmptyFeed = () => (
-  <p>Introduce una url válida para poder listar los episodios.</p>
-);
-
 const Feed = ({ rss }) => {
   console.log(rss);
 
   if (!rss || rss.items.length < 1) {
-    return <EmptyFeed />;
+    return null;
   }
 
   const feed = rss.feed;
   return (
-    <div className="feed">
-      <img src={feed.image} alt="Feed logo" className="feed-logo" />
-      <h3>{feed.title}</h3>
-      <div>
-        <b>Link:</b> <a href={feed.link}>{feed.link}</a>
-      </div>
-      <div>
-        <b>Autor:</b> {feed.author}
-      </div>
-      <div>
-        <b>Descripción:</b> {feed.description}
-      </div>
-      <div className="feed-items">
-        {
-          rss.items.map((item, index) => (
-            <div key={index}>
-              <FeedItem item={item} />
+
+    <div className="columns is-centered">
+      <div className="column is-four-fifths is-narrow">
+        <div className="content">
+          <div style={{ textAlign: 'center' }}>
+            <img src={feed.image} alt="Feed logo" style={{ width: 150 }} />
+            <h2>
+              <a href={feed.link}>{feed.title}</a>
+            </h2>
+            <div style={{ textAlign: 'left' }}>
+              <div>
+                <b>Autor:</b> {feed.author}
+              </div>
+              <div style={{ marginBottom: 20 }}> {feed.description} </div>
             </div>
-          ))
-        }
+          </div>
+          <div className="box">
+            {
+              rss.items.map((item, index) => (
+                <div key={index}>
+                  <FeedItem item={item} />
+                </div>
+              ))
+            }
+          </div>
+        </div>
       </div>
     </div>
   );
