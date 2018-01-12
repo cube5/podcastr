@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Audio from './Audio';
 
-const FeedItem = ({ item }) => (
+const FeedItem = ({ item = null, onEpisodePlay = null }) => (
   <div className="feed-item">
     <h4>{item.title}</h4>
     <div>
@@ -15,7 +15,12 @@ const FeedItem = ({ item }) => (
       <b>Descripción:</b> {item.description}
     </div>
     <div>
-      <Audio src={item.enclosure.link} type={item.enclosure.type} />
+      <button class="button is-info is-medium" onClick={e => onEpisodePlay(e, item)}>
+        <span class="icon">
+          <i class="fa fa-play"></i>
+        </span>
+        <span>Play</span>
+      </button>
     </div>
     <hr />
   </div>

@@ -4,9 +4,12 @@ const Footer = () => (
   <footer className="footer">
     <div className="container">
       <div className="content has-text-centered">
-        <span className="icon is-large">
-          <i className="fa fa-github fa-3x"></i>
-        </span>
+        <a href="https://github.com/cube5/podcastr">
+          <span className="icon is-large">
+            <i className="fa fa-github fa-3x"></i>
+          </span>
+        </a>
+        <p>Hecho con <a href="https://reactjs.org/">React</a> y <a href="https://bulma.io/">Bulma</a></p>
       </div>
     </div>
   </footer>

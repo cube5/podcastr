@@ -42,7 +42,7 @@ class Home extends Component {
 
     const {isFetching} = this.state;
     return (
-      <section className="section" style={{ minHeight: '14.2rem' }}>
+      <section className="section" style={{ minHeight: '11.2rem' }}>
         <div className="container">
           <SearchBar onSubmit={this.handleSubmit} isFetching={isFetching} />
           <Feed rss={this.state.rss} />
