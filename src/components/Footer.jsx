@@ -1,7 +1,14 @@
 import React from 'react';
 
 const Footer = () => (
-  <footer className="footer">
+  <footer
+    style={{
+      position: 'fixed',
+      bottom: 0,
+      left: 0,
+      width: '100%';
+    }}
+    className="footer">
     <div className="container">
       <div className="content has-text-centered">
         <a href="https://github.com/cube5/podcastr">
