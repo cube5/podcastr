@@ -18,7 +18,8 @@ export const getRSSFeed = (rss_url = null, count = 20) => {
 };
 
 export const getPodcastListings = () => {
-  const params = 'term=podcast&country=mx&entity=podcast&media=podcast&limit=10';
+  const params =
+    'term=podcast&country=mx&entity=podcast&media=podcast&limit=10';
   const itunesApi = `https://itunes.apple.com/search?${params}`;
 
   return fetch(itunesApi).then(response => response.json());

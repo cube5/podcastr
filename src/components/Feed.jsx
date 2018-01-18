@@ -64,11 +64,13 @@ class Feed extends Component {
 }
 
 Feed.propTypes = {
-  rss: PropTypes.object.isRequired,
+  rss: PropTypes.shape({
+    items: PropTypes.arrayOf(PropTypes.object)
+  }).isRequired,
 };
 
 Feed.defaultProps = {
-  rss: {}
+  rss: null,
 }
 
 export default Feed;

@@ -14,9 +14,9 @@ const FeedItem = ({ item = null, onEpisodePlay = null }) => (
       <b>Descripción:</b> {item.description}
     </div>
     <div>
-      <button class="button is-info is-medium" onClick={e => onEpisodePlay(e, item)}>
-        <span class="icon">
-          <i class="fa fa-play"></i>
+      <button className="button is-info is-medium" onClick={e => onEpisodePlay(e, item)}>
+        <span className="icon">
+          <i className="fa fa-play"></i>
         </span>
         <span>Play</span>
       </button>
@@ -27,6 +27,12 @@ const FeedItem = ({ item = null, onEpisodePlay = null }) => (
 
 FeedItem.propTypes = {
   item: PropTypes.object.isRequired,
+  onEpisodePlay: PropTypes.func.isRequired
+};
+
+FeedItem.defaultProps = {
+  item: {},
+  onEpisodePlay: null
 };
 
 export default FeedItem;
