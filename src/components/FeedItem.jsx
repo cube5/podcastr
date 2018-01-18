@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Audio from './Audio';
 
 const FeedItem = ({ item = null, onEpisodePlay = null }) => (
   <div className="feed-item">
