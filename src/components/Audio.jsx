@@ -1,10 +1,17 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 
 class Audio extends PureComponent {
-  constructor({ src = null, type = 'audio/mpeg' }) {
-    super();
+  audio = null;
 
-    this.audio = null;
+  static propTypes = {
+    src: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+  }
+
+  static defaultProps = {
+    src: '',
+    type: '',
   }
 
   componentDidUpdate() {

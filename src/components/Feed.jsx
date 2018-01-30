@@ -6,8 +6,8 @@ import Audio from './Audio';
 class Feed extends Component {
 
   state = {
-    audioSrc: null,
-    audioType: null,
+    audioSrc: '',
+    audioType: '',
   }
 
   handleEpisodePlay = (e, item) => {
@@ -35,7 +35,7 @@ class Feed extends Component {
             <div style={{ textAlign: 'center' }}>
               <img src={feed.image} alt="Feed logo" style={{ width: 150 }} />
               <div style={{ marginTop: 10 }}>
-                <Audio src={audioSrc} type={audioType} />
+                <Audio src={audioSrc} type={audioType}/>
               </div>
               <h2>
                 <a href={feed.link}>{feed.title}</a>
@@ -50,9 +50,11 @@ class Feed extends Component {
             <div className="box">
               {
                 rss.items.map((item, index) => (
-                  <div key={index}>
-                    <FeedItem item={item} onEpisodePlay={this.handleEpisodePlay} />
-                  </div>
+                  <FeedItem
+                    key={index}
+                    item={item}
+                    onEpisodePlay={this.handleEpisodePlay}
+                  />
                 ))
               }
             </div>
