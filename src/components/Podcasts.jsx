@@ -1,12 +1,14 @@
-import React, {Component} from 'react';
-import {getPodcastListings} from '../requests';
+import React, { Component } from 'react'
+import { getPodcastListings } from '../requests'
 
-const Podcast = ({podcast}) => {
-  console.log("podcast: ", podcast);
+const Podcast = ({ podcast }) => {
+  console.log('podcast: ', podcast)
   return (
     <ul>
       <li>artistName: {podcast.artistName}</li>
-      <li><img src={podcast.artworkUrl100} alt="Podcast logo"/></li>
+      <li>
+        <img src={podcast.artworkUrl100} alt="Podcast logo" />
+      </li>
       <li>collectionId: {podcast.collectionId}</li>
       <li>collectionName: {podcast.collectionName}</li>
       <li>collectionViewUrl: {podcast.collectionViewUrl}</li>
@@ -21,50 +23,45 @@ const Podcast = ({podcast}) => {
       <li>wrapperType: {podcast.wrapperType}</li>
     </ul>
   )
-};
+}
 
 export default class Podcasts extends Component {
   state = {
     podcasts: [],
-    isFetching: true,
+    isFetching: true
   }
 
   componentDidMount() {
     getPodcastListings()
       .then(response => {
-        const {results: podcasts} = response;
-        console.log(podcasts);
+        const { results: podcasts } = response
+        console.log(podcasts)
         this.setState({
           podcasts,
           isFetching: false
         })
       })
       .catch(e => {
-        console.error("Error ocurred when fetching podcasts from api", e);
+        console.error('Error ocurred when fetching podcasts from api', e)
         this.setState({
           isFetching: false
         })
-      });
+      })
   }
 
   render() {
-
     if (this.state.isFetching) {
-      return null;
+      return null
     }
 
-    const {podcasts} = this.state;
-    console.log("render podcasts: ", podcasts);
+    const { podcasts } = this.state
+    console.log('render podcasts: ', podcasts)
     return (
       <div>
-        {
-          podcasts.map(podcast => {
-            return (
-              <Podcast key={podcast.collectionId} podcast={podcast} />
-            );
-          })
-        }
+        {podcasts.map(podcast => {
+          return <Podcast key={podcast.collectionId} podcast={podcast} />
+        })}
       </div>
-    );
+    )
   }
-};
+}

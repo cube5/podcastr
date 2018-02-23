@@ -1,40 +1,40 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
-import FeedItem from "./FeedItem";
-import Audio from "./Audio";
+import FeedItem from './FeedItem'
+import Audio from './Audio'
 
 class Feed extends Component {
   state = {
-    src: "",
-    type: "",
-    title: ""
-  };
+    src: '',
+    type: '',
+    title: ''
+  }
 
   play = item => {
-    const { link: src, type, title } = item.enclosure;
-    console.log(item);
-    this.setState({ src, type, title });
-  };
+    const { link: src, type, title } = item.enclosure
+    console.log(item)
+    this.setState({ src, type, title })
+  }
 
   isPlaying = item => {
-    const { link: itemSrc } = item.enclosure;
-    return this.state.src === itemSrc;
-  };
+    const { link: itemSrc } = item.enclosure
+    return this.state.src === itemSrc
+  }
 
   render() {
-    const { rss } = this.props;
+    const { rss } = this.props
     if (!rss || (rss && !rss.feed)) {
-      return null;
+      return null
     }
 
-    const { feed } = rss;
+    const { feed } = rss
 
     return (
       <div className="columns is-centered">
         <div className="column is-four-fifths is-narrow">
           <div className="content">
-            <div style={{ textAlign: "center" }}>
+            <div style={{ textAlign: 'center' }}>
               {feed.image && (
                 <img src={feed.image} alt="Feed logo" style={{ width: 150 }} />
               )}
@@ -46,7 +46,7 @@ class Feed extends Component {
               <h2>
                 <a href={feed.link}>{feed.title}</a>
               </h2>
-              <div style={{ textAlign: "left" }}>
+              <div style={{ textAlign: 'left' }}>
                 <div>
                   <b>Autor:</b> {feed.author}
                 </div>
@@ -66,7 +66,7 @@ class Feed extends Component {
           </div>
         </div>
       </div>
-    );
+    )
   }
 }
 
@@ -74,10 +74,10 @@ Feed.propTypes = {
   rss: PropTypes.shape({
     items: PropTypes.arrayOf(PropTypes.object)
   }).isRequired
-};
+}
 
 Feed.defaultProps = {
   rss: null
-};
+}
 
-export default Feed;
+export default Feed
