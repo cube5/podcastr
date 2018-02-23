@@ -14,6 +14,13 @@ class Audio extends PureComponent {
     type: '',
   }
 
+  componentDidMount() {
+    this.audio.onplay = () => {
+      console.log('[Audio]: audio playing event');
+      this.props.onPlay();
+    }
+  }
+
   componentDidUpdate() {
     this.audio.load();
   }

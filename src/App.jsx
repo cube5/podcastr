@@ -1,14 +1,16 @@
 import './app.css';
-import React from 'react';
+import React, {Fragment} from 'react';
 
 import Header from './components/Header';
-import Home from './components/Home';
+import Content from './components/Content';
 import Footer from './components/Footer';
 
-const App = () => [
-  <Header key={1}/>,
-  <Home key={2}/>,
-  <Footer key={3}/>
-];
+const App = () => (
+  <Fragment>
+    <Header/>
+    <Content/>
+    <Footer/>
+  </Fragment>
+);
 
 export default App;

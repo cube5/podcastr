@@ -1,32 +1,40 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
 import FeedItem from './FeedItem';
 import Audio from './Audio';
 
 class Feed extends Component {
-
   state = {
-    audioSrc: '',
-    audioType: '',
+    src: '',
+    type: '',
+    title: '',
+    playing: false,
   }
 
-  handleEpisodePlay = (e, item) => {
-    const { link: audioSrc, type: audioType } = item.enclosure;
-    this.setState({
-      audioSrc,
-      audioType,
-    })
+  play = item => {
+    const { link: src, type: type } = item.enclosure;
+    this.setState({ src, type });
   };
+
+  pause = () => {
+    this.setState({ src: null });
+  }
+
+  onPlay = () => {
+    this.setState({
+      playing: true,
+    })
+  }
 
   render() {
 
     const { rss } = this.props;
-    if (!rss || rss.items.length < 1) {
+    if (!rss || rss && !Array.isArray(rss.items)) {
       return null;
     }
 
     const { feed } = rss;
-    const { audioSrc, audioType } = this.state;
 
     return (
       <div className="columns is-centered">
@@ -35,7 +43,12 @@ class Feed extends Component {
             <div style={{ textAlign: 'center' }}>
               <img src={feed.image} alt="Feed logo" style={{ width: 150 }} />
               <div style={{ marginTop: 10 }}>
-                <Audio src={audioSrc} type={audioType}/>
+                <Audio
+                  src={this.state.src}
+                  type={this.state.type}
+                  onPlay={this.onPlay}
+                  pause={this.pause}
+                />
               </div>
               <h2>
                 <a href={feed.link}>{feed.title}</a>
@@ -53,7 +66,9 @@ class Feed extends Component {
                   <FeedItem
                     key={index}
                     item={item}
-                    onEpisodePlay={this.handleEpisodePlay}
+                    play={this.play}
+                    pause={this.pause}
+                    playing={this.state.playing}
                   />
                 ))
               }

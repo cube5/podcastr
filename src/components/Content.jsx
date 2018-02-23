@@ -1,22 +1,18 @@
 import React, { Component } from 'react';
+
 import {getRSSFeed} from '../requests';
 // import Podcasts from './Podcasts';
 import SearchBar from './SearchBar';
 import Feed from './Feed';
 
-class Home extends Component {
-  constructor(props) {
-    super(props);
-
-    this.input = null;
-    this.state = {
-      isFetching: false,
-      rss: {
-        feed: {},
-        items: [],
-      },
-    };
-  }
+class Content extends Component {
+  state = {
+    isFetching: false,
+    rss: {
+      feed: {},
+      items: [],
+    },
+  };
 
   handleSubmit = async (e, value) => {
     e.preventDefault();
@@ -44,12 +40,12 @@ class Home extends Component {
     return (
       <section className="section" style={{ minHeight: '11.2rem' }}>
         <div className="container">
-          <SearchBar onSubmit={this.handleSubmit} isFetching={isFetching} />
-          <Feed rss={this.state.rss} />
+          <SearchBar onSubmit={this.handleSubmit} isFetching={isFetching}/>
+          <Feed rss={this.state.rss}/>
         </div>
       </section>
     );
   }
 }
 
-export default Home;
+export default Content;
