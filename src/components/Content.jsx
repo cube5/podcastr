@@ -1,22 +1,22 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import {getRSSFeed} from '../requests';
+import { getRSSFeed } from "../requests";
 // import Podcasts from './Podcasts';
-import SearchBar from './SearchBar';
-import Feed from './Feed';
+import SearchBar from "./SearchBar";
+import Feed from "./Feed";
 
 class Content extends Component {
   state = {
     isFetching: false,
     rss: {
-      feed: {},
-      items: [],
-    },
+      feed: null,
+      items: []
+    }
   };
 
   handleSubmit = async (e, value) => {
     e.preventDefault();
-    console.log('handling submit event', value);
+    console.log("handling submit event", value);
 
     this.setState({
       isFetching: true
@@ -30,18 +30,17 @@ class Content extends Component {
       rss: {
         feed,
         items
-      },
+      }
     });
-  }
+  };
 
   render() {
-
-    const {isFetching} = this.state;
+    const { isFetching } = this.state;
     return (
-      <section className="section" style={{ minHeight: '11.2rem' }}>
+      <section className="section" style={{ minHeight: "11.2rem" }}>
         <div className="container">
-          <SearchBar onSubmit={this.handleSubmit} isFetching={isFetching}/>
-          <Feed rss={this.state.rss}/>
+          <SearchBar onSubmit={this.handleSubmit} isFetching={isFetching} />
+          <Feed rss={this.state.rss} />
         </div>
       </section>
     );

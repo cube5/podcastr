@@ -1,34 +1,32 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
+import React, { PureComponent } from "react";
+import PropTypes from "prop-types";
 
 class Audio extends PureComponent {
-  audio = null;
+  player = null;
 
   static propTypes = {
     src: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-  }
+    type: PropTypes.string.isRequired
+  };
 
   static defaultProps = {
-    src: '',
-    type: '',
-  }
-
-  componentDidMount() {
-    this.audio.onplay = () => {
-      console.log('[Audio]: audio playing event');
-      this.props.onPlay();
-    }
-  }
+    src: "",
+    type: ""
+  };
 
   componentDidUpdate() {
-    this.audio.load();
+    this.player.load();
   }
 
   render() {
     const { src, type } = this.props;
     return (
-      <audio preload="auto" controls autoPlay ref={audio => this.audio = audio}>
+      <audio
+        autoPlay
+        controls
+        preload="auto"
+        ref={audio => (this.player = audio)}
+      >
         <source src={src} type={type} />
         Your browser does not support the <code>audio</code> element.
       </audio>
