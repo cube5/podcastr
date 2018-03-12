@@ -1,4 +1,4 @@
-import 'whatwg-fetch';
+import 'whatwg-fetch'
 
 /**
  * Using https://rss2json.com API to parse the rss feed to json
@@ -7,34 +7,33 @@ import 'whatwg-fetch';
 
 export const getRSSFeed = async (rssUrl = null, count = 20) => {
   if (!rssUrl) {
-    return;
+    return
   }
 
-  const apiUrl = `https://3dqgq8xcuc.execute-api.us-west-2.amazonaws.com/v1/podcastr-api`;
-  const url = `${apiUrl}?rss_url=${rssUrl}`;
+  const apiUrl = `https://3dqgq8xcuc.execute-api.us-west-2.amazonaws.com/v1/podcastr-api`
+  const url = `${apiUrl}?rss_url=${rssUrl}`
   try {
-    const result = await fetch(url);
-    const resultJSON = await result.json();
-    console.log('result: ', resultJSON);
-    const parsed = schema(resultJSON.rss);
-    console.log('parsed: ', parsed);
-    return parsed;
+    const result = await fetch(url)
+    const resultJSON = await result.json()
+    console.log('result: ', resultJSON)
+    const parsed = schema(resultJSON.rss)
+    console.log('parsed: ', parsed)
+    return parsed
   } catch (e) {
-    console.error('Error getRSSFeed: ', e);
-    return null;
+    console.error('Error getRSSFeed: ', e)
+    return null
   }
-};
+}
 
 export const getPodcastListings = () => {
-  const params =
-    'term=podcast&country=mx&entity=podcast&media=podcast&limit=10';
-  const itunesApi = `https://itunes.apple.com/search?${params}`;
+  const params = 'term=podcast&country=mx&entity=podcast&media=podcast&limit=10'
+  const itunesApi = `https://itunes.apple.com/search?${params}`
 
-  return fetch(itunesApi).then(response => response.json());
-};
+  return fetch(itunesApi).then(response => response.json())
+}
 
 function schema(rss = {}) {
-  const { channel } = rss;
+  const { channel } = rss
   return {
     feed: {
       title: channel.title,
@@ -58,5 +57,5 @@ function schema(rss = {}) {
         length: i.enclosure['@length'],
       },
     })),
-  };
+  }
 }
