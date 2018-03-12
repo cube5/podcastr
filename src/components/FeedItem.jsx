@@ -2,7 +2,7 @@ import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 import { Toggle } from 'react-powerplug';
 
-const FeedItem = ({ item = null, play = null, playing = false}) => (
+const FeedItem = ({ item = null, play = null }) => (
   <Fragment>
     <h3><a href={item.link}>{item.title}</a></h3>
     <h4>{item.description}</h4>
@@ -31,12 +31,10 @@ const FeedItem = ({ item = null, play = null, playing = false}) => (
 
 FeedItem.propTypes = {
   item: PropTypes.object.isRequired,
-  onEpisodePlay: PropTypes.func.isRequired
 };
 
 FeedItem.defaultProps = {
   item: {},
-  onEpisodePlay: null
 };
 
 export default FeedItem;

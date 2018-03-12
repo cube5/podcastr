@@ -13,7 +13,7 @@ class Feed extends Component {
   }
 
   play = item => {
-    const { link: src, type: type } = item.enclosure;
+    const { url: src, type: type } = item.media;
     this.setState({ src, type });
   };
 
@@ -41,7 +41,7 @@ class Feed extends Component {
         <div className="column is-four-fifths is-narrow">
           <div className="content">
             <div style={{ textAlign: 'center' }}>
-              <img src={feed.image} alt="Feed logo" style={{ width: 150 }} />
+              <img src={feed.logo} alt="Feed logo" style={{ width: 150 }} />
               <div style={{ marginTop: 10 }}>
                 <Audio
                   src={this.state.src}
@@ -67,8 +67,6 @@ class Feed extends Component {
                     key={index}
                     item={item}
                     play={this.play}
-                    pause={this.pause}
-                    playing={this.state.playing}
                   />
                 ))
               }
